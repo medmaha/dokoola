@@ -2,7 +2,7 @@ import os
 
 DEBUG = bool(int(os.environ.get("DEBUG", 0)))
 
-default_db = {
+credentials = {
     "ENGINE": "django.db.backends.sqlite3",
     "NAME": "db.sqlite3",
 }
@@ -17,7 +17,7 @@ if not DEBUG:
 
     assert DB_ENGINE and DB_USER and DB_HOST and DB_PORT, "Invalid Database credentials"
 
-    default_db = {
+    credentials = {
         "USER": DB_USER,
         "NAME": DB_NAME,
         "HOST": DB_HOST,
@@ -26,7 +26,8 @@ if not DEBUG:
         "PASSWORD": DB_PASSWORD,
     }
 
-DATABASES = {"default": default_db}
+DATABASES = {"default": credentials}
 
+print(credentials)
 
 __all__ = ["DATABASES"]
